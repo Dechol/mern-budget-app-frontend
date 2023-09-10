@@ -12,7 +12,7 @@ const TranDetails = ({tran}) => {
         if(!user){
             return
         }
-        const response = await fetch('/trans/'+ tran._id, {
+        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans/'+ tran._id, {
             method:'DELETE',
             headers: {
                 'Authorization': `Bearer ${user.token}`,
