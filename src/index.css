@@ -31,6 +31,25 @@ header a {
   padding: 20px;
   margin: 0 auto;
 }
+/* card */
+.card{
+  border: 3px solid #fff;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 25px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.card .cardheader{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  cursor: pointer;
+  
+}
+.card .cardheader h3{
+  margin-right: 6px;
+}
+
 
 /* homepage */
 .home {
