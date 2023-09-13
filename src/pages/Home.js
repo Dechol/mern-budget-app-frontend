@@ -24,6 +24,7 @@ const Home = () => {
     const today = new Date().toDateString()
     const yesterday = new Date(Date.now() - 86400000).toDateString()
     const daybefore = new Date(Date.now() - 86400000*2).toDateString()
+    console.log('test merge')
 
     return(
         <div className="home">
