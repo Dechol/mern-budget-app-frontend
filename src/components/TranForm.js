@@ -22,7 +22,7 @@ const TranForm = () => {
 
         const tran = {desc, amount, category}
 
-        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
+        const response = await fetch('/trans',{
             method: 'POST',
             body: JSON.stringify(tran),
             headers: {
