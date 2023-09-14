@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Card from "../components/Card"
 import TranForm from "../components/TranForm"
+import { dayLoop } from "../helpers"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useTransContext } from "../hooks/useTransContext"
 
@@ -20,18 +21,11 @@ const Home = () => {
         }
         if(user){ 
             fetchTrans() 
-            dayLoop()
+            dayLoop(setDaysDisplayed)
         }
     },[dispatch,user])
 
-    const dayLoop = () =>{
-        const dayArr = []
-        for(let i = 0; i < 7; i++) {
-            const thisdate = new Date(Date.now() - (i * 86400000)).toDateString()
-            dayArr.push(thisdate)  
-        }
-        setDaysDisplayed(dayArr)
-    }
+    
     
     return(
         <div className="home">
