@@ -6,6 +6,7 @@ import { useAuthContext } from "../hooks/useAuthContext"
 import { useTransContext } from "../hooks/useTransContext"
 
 const Home = () => {
+    const [weeks, setWeeks] = useState(1)
     const [daysDisplayed , setDaysDisplayed] = useState([])
     const {trans , dispatch} = useTransContext()
     const { user } = useAuthContext()
@@ -21,9 +22,13 @@ const Home = () => {
         }
         if(user){ 
             fetchTrans() 
-            dayLoop(setDaysDisplayed)
+            dayLoop(setDaysDisplayed, weeks)
         }
-    },[dispatch,user])
+    },[dispatch,user,weeks])
+
+    const loadMore = () => {
+        setWeeks(weeks + 1)
+    }
 
     
     
@@ -33,6 +38,7 @@ const Home = () => {
                 {trans && daysDisplayed.map(day => (
                     <Card trans={trans} day={day} title={day} key={day} />
                 ))}
+                <button onClick={loadMore}>Load more</button>
             </div>
             <TranForm />
         </div>
