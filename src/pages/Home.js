@@ -11,7 +11,6 @@ const Home = () => {
     const {trans , dispatch} = useTransContext()
     const { user } = useAuthContext()
 
-
     useEffect(()=>{
         const fetchTrans = async () => {
             const response = await fetch('/trans',{
@@ -30,15 +29,13 @@ const Home = () => {
         setWeeks(weeks + 1)
     }
 
-    
-    
     return(
         <div className="home">
             <div className="workouts" >
                 {trans && daysDisplayed.map(day => (
                     <Card trans={trans} day={day} title={day} key={day} />
                 ))}
-                <button onClick={loadMore}>Load more</button>
+                <button className="loadmore" onClick={loadMore}>Load more</button>
             </div>
             <TranForm />
         </div>
