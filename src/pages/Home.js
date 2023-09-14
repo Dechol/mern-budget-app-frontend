@@ -13,7 +13,7 @@ const Home = () => {
 
     useEffect(()=>{
         const fetchTrans = async () => {
-            const response = await fetch('/trans',{
+            const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
                 headers: {'Authorization': `Bearer ${user.token}`}
             })
             const json = await response.json()
@@ -35,7 +35,7 @@ const Home = () => {
                 {trans && daysDisplayed.map(day => (
                     <Card trans={trans} day={day} title={day} key={day} />
                 ))}
-                <button className="loadmore" onClick={loadMore}>Load more</button>
+                {trans && <button className="loadmore" onClick={loadMore}>Load more</button>}
             </div>
             <TranForm />
         </div>
