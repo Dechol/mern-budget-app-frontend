@@ -17,6 +17,10 @@ export const transReducer = (state, action) => {
             return{
                 trans: state.trans.filter((t)=>t._id !== action.payload._id)
             }
+        case 'GET_TRAN':
+            return {
+                trans: [action.payload]
+            }
         default:
             return state
     }

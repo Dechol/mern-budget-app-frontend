@@ -31,52 +31,45 @@ header a {
   padding: 20px;
   margin: 0 auto;
 }
-/* card */
-.card{
-  border: 3px solid #fff;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-.card .cardheader{
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  cursor: pointer;
-  
-}
-.card .cardheader h3{
-  margin-right: 6px;
-}
 /* homepage */
 .home {
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 10px;
 }
-.workout-details {
+.tran-details {
   background: #fff;
   border-radius: 4px;
   margin: 10px auto;
-  padding: 20px;
+  padding: 5px 0 5px 25px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  border: 1px solid #ddd;
 }
-.workout-details h4 {
+.tran-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
-  color: var(--error);
+  color: #555;
 }
-.workout-details p {
+.tran-details p {
   margin: 0;
   font-size: 0.9em;
   color: #555;
 }
-.workout-details span {
+.tran-details .delete {
   position: absolute;
   top: 20px;
   right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+.tran-details .edit {
+  position: absolute;
+  top: 20px;
+  right: 65px;
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
@@ -93,7 +86,31 @@ header a {
   font-size: 1em;
   margin-left: 10px;
 }
-/* new workout form */
+p.income{
+  color: green;
+}
+p.expense{
+  color: red;
+}
+/* card */
+.card{
+  border: 3px solid #fff;
+  border-radius: 4px;
+  padding: 10px 2px 10px 25px;
+  margin: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.card .cardheader{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  cursor: pointer;
+  
+}
+.card .cardheader h3{
+  margin-right: 6px;
+}
+/* new tran form */
 label, input {
   display: block;
 }
