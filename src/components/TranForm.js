@@ -9,6 +9,7 @@ const TranForm = () => {
     const [desc,setDesc] = useState('')
     const [amount,setAmount] = useState('')
     const [category,setCat] = useState('')
+    const [isIncome, setIsIncome] = useState(false)
     const [error , setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
@@ -20,7 +21,7 @@ const TranForm = () => {
             return
         }
 
-        const tran = {desc, amount, category}
+        const tran = {desc, amount, category, isIncome}
 
         const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
             method: 'POST',
@@ -40,6 +41,7 @@ const TranForm = () => {
             setDesc('')
             setAmount('')
             setCat('')
+            setIsIncome(false)
             setError(null)
             setEmptyFields([])
             dispatch({type:'CREATE_TRAN',payload:json})
@@ -74,6 +76,14 @@ const TranForm = () => {
                 onChange={(e)=>setCat(e.target.value)}
                 value={category}
             />
+            
+            <label>income?</label>
+            <input 
+                type='checkbox'
+                value={isIncome}
+                onChange={()=>setIsIncome(!isIncome)}
+            />
+            
             <button>Add Transaction</button>
             {error && <div className='error'>{error}</div>}
         </form>
