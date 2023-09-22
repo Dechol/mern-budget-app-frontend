@@ -51,11 +51,12 @@ const Edit = () => {
 
         const response = await fetch('/trans/'+ trans[0]._id ,{
             method: 'PATCH',
+            mode:'cors',
             body: JSON.stringify(tran),
             headers: {
                 'Authorization': `Bearer ${user.token}`,
                 'Content-Type': 'application/json'
-            }
+            }            
         })
         const json = await response.json()
 
