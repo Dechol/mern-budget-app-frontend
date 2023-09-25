@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import { useAuthContext } from './hooks/useAuthContext';
 import Edit from './pages/Edit'
+import Create from './pages/Create';
 
 function App() {
   const {user} = useAuthContext()
@@ -19,7 +20,8 @@ function App() {
           <Route path='/' element={user ? < Home /> : <Navigate to='/login' />}/>
           <Route path='/login' element={!user ? < Login /> : <Navigate to='/' />}/>
           <Route path='/signup' element={!user ? < Signup /> : <Navigate to='/' />}/>
-          <Route path='/tran' element={user? <Edit /> : <Navigate to='/login' />} />
+          <Route path='/edit' element={user? <Edit /> : <Navigate to='/login' />} />
+          <Route path='/create' element={user? <Create /> : <Navigate to='/login' /> } />
         </Routes>
       </div>
       </BrowserRouter>

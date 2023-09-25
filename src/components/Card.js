@@ -5,10 +5,10 @@ import TranDetails from "./TranDetails"
 const Card = ({trans, day, title}) => {
     const [displayTrans , setDisplayTrans] = useState(false)
 
-    const todayCard = trans.filter(d => dateString(d.createdAt) === day )
+    const todayCard = trans.filter(d => dateString(d.date? d.date : d.createdAt) === day )
     const total = todayCard.reduce((acc, cur) => cur.isIncome? acc - Number(cur.amount) : acc + Number(cur.amount), 0 )
 
-    function handleClick(e){
+    function handleClick(){
         setDisplayTrans(!displayTrans)
     }
 

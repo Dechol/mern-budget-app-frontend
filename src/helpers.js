@@ -13,5 +13,16 @@ export const dayLoop = (setState, weeks) =>{
     }
     setState(dayArr)
 }
+export const todayIsoString = () => {
+    const today = new Date()
+    const todayiso = today.toISOString()
+    const todaylocal = today.toLocaleString()
+
+    console.log('today: ',todaylocal)
+    console.log('todayiso: ',todayiso)
+}
+
+// const todayDate = new Date().toISOString().split('T')[0]
+// console.log(todayDate)
 
 

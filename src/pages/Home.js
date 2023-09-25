@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import Card from "../components/Card"
-import TranForm from "../components/TranForm"
 import { dayLoop } from "../helpers"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useTransContext } from "../hooks/useTransContext"
@@ -13,7 +12,7 @@ const Home = () => {
 
     useEffect(()=>{
         const fetchTrans = async () => {
-            const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
+            const response = await fetch('/trans',{
                 headers: {'Authorization': `Bearer ${user.token}`}
             })
             const json = await response.json()
@@ -37,7 +36,6 @@ const Home = () => {
                 ))}
                 {trans && <button className="loadmore" onClick={loadMore}>Load more</button>}
             </div>
-            <TranForm />
         </div>
     )
 }

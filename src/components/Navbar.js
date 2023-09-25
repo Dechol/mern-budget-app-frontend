@@ -18,6 +18,11 @@ const Navbar = () => {
                     <h1>tracker</h1>
                 </Link>
                 <nav>
+                    {user && (
+                        <Link className="createBtn" to='/create'>
+                            <button><strong>Add Transaction</strong></button>
+                        </Link>
+                    )}
                     {user && (<div>
                         <span>{user.email}</span>
                         <button onClick={handleClick}>Logout</button>
