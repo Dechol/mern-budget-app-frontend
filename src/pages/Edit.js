@@ -16,7 +16,7 @@ const Edit = () => {
     const [desc, setDesc] = useState('')
     const [amount, setAmount] = useState(0)
     const [category, setCat] = useState('')
-    const [date, setDate] = useState(null)
+    const [date, setDate] = useState('')
     const [isIncome, setIsIncome] = useState(false)
     const [isRecurring, setIsRecurring] = useState(false)
     const [isHighlight, setIsHighLight] = useState(false)
@@ -55,7 +55,7 @@ const Edit = () => {
 
         const tran = {desc, amount, category, date}
 
-        const response = await fetch('/trans/'+ trans[0]._id ,{
+        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans/'+ trans[0]._id ,{
             method: 'PATCH',
             mode:'cors',
             body: JSON.stringify(tran),

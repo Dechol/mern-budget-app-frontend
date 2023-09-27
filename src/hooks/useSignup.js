@@ -11,7 +11,7 @@ const useSignup = () => {
         setLoading(true)
         setError(null)
 
-        const response = await fetch('/user/signup', {
+        const response = await fetch('https://budgetbackend-dhjq.onrender.com/user/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})

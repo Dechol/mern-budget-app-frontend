@@ -10,10 +10,9 @@ const Home = () => {
     const {trans , dispatch: transDispatch} = useTransContext()
     const { user, dispatch } = useAuthContext()
 
-
     useEffect(()=>{
         const fetchTrans = async () => {
-            const response = await fetch('/trans',{
+            const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
                 headers: {'Authorization': `Bearer ${user.token}`}
             })
             const json = await response.json()
