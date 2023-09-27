@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useTransContext } from "../hooks/useTransContext"
+import { useLogout } from '../hooks/useLogout'
+
 
 //CREATE PAGE (COMPONENT)FOR TRANSACTION TO EDIT --complete
 //GET TRAN(ID) FROM CONTEXT OR DB --from context 
@@ -23,6 +25,7 @@ const Edit = () => {
     const {trans } = useTransContext()
     const {user} = useAuthContext()
     const navigate = useNavigate()
+    const {logout} = useLogout()
 
     console.log('edit tran:',trans)
     useEffect(()=>{
@@ -63,6 +66,7 @@ const Edit = () => {
         })
         const json = await response.json()
 
+        if(response.status === 401 ){logout()}
         if(!response.ok){
             setError(json.error)
         }

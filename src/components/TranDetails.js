@@ -2,12 +2,14 @@ import { useTransContext } from "../hooks/useTransContext"
 import {formatDistanceToNow}  from 'date-fns'
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useNavigate } from "react-router-dom"
+import { useLogout } from '../hooks/useLogout'
 
 
 const TranDetails = ({tran}) => {
     const {dispatch} = useTransContext()
     const { user } = useAuthContext()
     const navigate = useNavigate()
+    const {logout} = useLogout()
 
     const handleClick = async(event) => {
         event.stopPropagation();
@@ -21,6 +23,9 @@ const TranDetails = ({tran}) => {
             }
         })
         const json = await response.json()
+        if(response.status === 401){
+            logout()
+        }
         if(response.ok){
             dispatch({type:'DELETE_TRAN', payload: json})
         }
@@ -36,6 +41,9 @@ const TranDetails = ({tran}) => {
             }
         })
         const json = await response.json()
+        if(response.status === 401){
+            logout()
+        }
         if(response.ok){
             dispatch({type:'GET_TRAN', payload: json})
             navigate('/edit')
