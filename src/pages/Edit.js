@@ -52,7 +52,7 @@ const Edit = () => {
 
         const tran = {desc, amount, category, date}
 
-        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans/'+ trans[0]._id ,{
+        const response = await fetch('/trans/'+ trans[0]._id ,{
             method: 'PATCH',
             mode:'cors',
             body: JSON.stringify(tran),

@@ -12,7 +12,7 @@ const Home = () => {
 
     useEffect(()=>{
         const fetchTrans = async () => {
-            const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
+            const response = await fetch('/trans',{
                 headers: {'Authorization': `Bearer ${user.token}`}
             })
             const json = await response.json()
