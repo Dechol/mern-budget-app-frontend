@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useTransContext } from '../hooks/useTransContext'
 import { useLogout } from '../hooks/useLogout' 
+import { useNavigate } from 'react-router-dom'
 
 
 const todayDate = new Date().toISOString().split('T')[0]
@@ -20,8 +21,7 @@ const TranForm = () => {
     const {dispatch} = useTransContext()
     const { user } = useAuthContext()
     const { logout } = useLogout()
-
-    
+    const navigate = useNavigate()
 
 
     const handleSubmit = async (e) => {
@@ -67,6 +67,8 @@ const TranForm = () => {
             setError(null)
             setEmptyFields([])
             dispatch({type:'CREATE_TRAN',payload:json})
+            navigate('/')
+
         }
 
     }
