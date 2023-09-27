@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useTransContext } from '../hooks/useTransContext'
 import { useLogout } from '../hooks/useLogout' 
+import { useNavigate } from 'react-router-dom'
 
 
 const todayDate = new Date().toISOString().split('T')[0]
@@ -20,8 +21,7 @@ const TranForm = () => {
     const {dispatch} = useTransContext()
     const { user } = useAuthContext()
     const { logout } = useLogout()
-
-    
+    const navigate = useNavigate()
 
 
     const handleSubmit = async (e) => {
@@ -35,7 +35,7 @@ const TranForm = () => {
         const tran = {desc, amount, category, isIncome, date, isRecurring, isHighlight}
         console.log(tran)
 
-        const response = await fetch('/trans',{
+        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
             method: 'POST',
             body: JSON.stringify(tran),
             headers: {
@@ -67,8 +67,8 @@ const TranForm = () => {
             setError(null)
             setEmptyFields([])
             dispatch({type:'CREATE_TRAN',payload:json})
+            navigate('/')
         }
-
     }
 
     return(
