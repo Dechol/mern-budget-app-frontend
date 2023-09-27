@@ -2,25 +2,30 @@ import { useTransContext } from "../hooks/useTransContext"
 import {formatDistanceToNow}  from 'date-fns'
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useNavigate } from "react-router-dom"
+import { useLogout } from '../hooks/useLogout'
 
 
 const TranDetails = ({tran}) => {
     const {dispatch} = useTransContext()
     const { user } = useAuthContext()
     const navigate = useNavigate()
+    const {logout} = useLogout()
 
     const handleClick = async(event) => {
         event.stopPropagation();
         if(!user){
             return
         }
-        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans/'+ tran._id, {
+        const response = await fetch('/trans/'+ tran._id, {
             method:'DELETE',
             headers: {
                 'Authorization': `Bearer ${user.token}`,
             }
         })
         const json = await response.json()
+        if(response.status === 401){
+            logout()
+        }
         if(response.ok){
             dispatch({type:'DELETE_TRAN', payload: json})
         }
@@ -29,13 +34,16 @@ const TranDetails = ({tran}) => {
         if(!user){
             return
         }
-        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans/'+ tran._id, {
+        const response = await fetch('/trans/'+ tran._id, {
             method:'GET',
             headers: {
                 'Authorization': `Bearer ${user.token}`,
             }
         })
         const json = await response.json()
+        if(response.status === 401){
+            logout()
+        }
         if(response.ok){
             dispatch({type:'GET_TRAN', payload: json})
             navigate('/edit')

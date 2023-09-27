@@ -8,12 +8,12 @@ export const useLogout = () => {
     const {dispatch: transDispatch} = useTransContext()
 
     const logout = () => {
-        //remove use from local stoarge
+        //remove user from local stoarge
         localStorage.removeItem('user')
         dispatch({type:'LOGOUT'})
         transDispatch({type:'SET_TRANS', payload: null})
     }
 
-    return {logout}
+    return { logout }
 }
 

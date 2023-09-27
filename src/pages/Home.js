@@ -7,22 +7,34 @@ import { useTransContext } from "../hooks/useTransContext"
 const Home = () => {
     const [weeks, setWeeks] = useState(1)
     const [daysDisplayed , setDaysDisplayed] = useState([])
-    const {trans , dispatch} = useTransContext()
-    const { user } = useAuthContext()
+    const {trans , dispatch: transDispatch} = useTransContext()
+    const { user, dispatch } = useAuthContext()
+
 
     useEffect(()=>{
         const fetchTrans = async () => {
-            const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
+            const response = await fetch('/trans',{
                 headers: {'Authorization': `Bearer ${user.token}`}
             })
             const json = await response.json()
-            if(response.ok){dispatch({type:'SET_TRANS',payload:json})}
+            if(!response.ok){
+                // sign user out & DISPLAY ERROR MESSAGE?
+                console.log('json: ',json.error)
+                localStorage.removeItem('user')
+                dispatch({type:'LOGOUT'})
+                transDispatch({type:'SET_TRANS', payload: null})            
+            }
+            if(response.ok){
+                console.log('response ok')
+                transDispatch({type:'SET_TRANS',payload:json})
+            }
         }
         if(user){ 
-            fetchTrans() 
+            console.log('user is logged in')
             dayLoop(setDaysDisplayed, weeks)
+            fetchTrans() 
         }
-    },[dispatch,user,weeks])
+    },[ transDispatch, user, weeks, dispatch ])
 
     const loadMore = () => {
         setWeeks(weeks + 1)

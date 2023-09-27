@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useTransContext } from '../hooks/useTransContext'
+import { useLogout } from '../hooks/useLogout' 
 
 
 const todayDate = new Date().toISOString().split('T')[0]
@@ -18,6 +19,7 @@ const TranForm = () => {
     const [emptyFields, setEmptyFields] = useState([])
     const {dispatch} = useTransContext()
     const { user } = useAuthContext()
+    const { logout } = useLogout()
 
     
 
@@ -33,7 +35,7 @@ const TranForm = () => {
         const tran = {desc, amount, category, isIncome, date, isRecurring, isHighlight}
         console.log(tran)
 
-        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
+        const response = await fetch('/trans',{
             method: 'POST',
             body: JSON.stringify(tran),
             headers: {
@@ -41,8 +43,14 @@ const TranForm = () => {
                 'Content-Type': 'application/json'
             }
         })
-        const json = await response.json()
+        console.log('response: ',response)
 
+        const json = await response.json()
+        console.log('json: ',json)
+
+        if(response.status === 401){
+            logout()
+        }
         if(!response.ok){
             setError(json.error)
             setEmptyFields(json.emptyFields)
@@ -134,7 +142,7 @@ const TranForm = () => {
             <br />
             
             <button>Add Transaction</button>
-            {error && <div className='error'>{error}</div>}
+            {error && <div className='error'>{error},{emptyFields}</div>}
         </form>
 
     )
