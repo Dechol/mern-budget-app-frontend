@@ -4,15 +4,18 @@ import { dayLoop } from "../helpers"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useTransContext } from "../hooks/useTransContext"
 
+
 const Home = () => {
     const [weeks, setWeeks] = useState(1)
     const [daysDisplayed , setDaysDisplayed] = useState([])
     const {trans , dispatch: transDispatch} = useTransContext()
     const { user, dispatch } = useAuthContext()
 
+    console.log(process.env.REACT_APP_URL)
+
     useEffect(()=>{
         const fetchTrans = async () => {
-            const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
+            const response = await fetch( process.env.REACT_APP_URL + 'trans' , {
                 headers: {'Authorization': `Bearer ${user.token}`}
             })
             const json = await response.json()
