@@ -35,7 +35,7 @@ const TranForm = () => {
         const tran = {desc, amount, category, isIncome, date, isRecurring, isHighlight}
         console.log(tran)
 
-        const response = await fetch('https://budgetbackend-dhjq.onrender.com/trans',{
+        const response = await fetch(process.env.REACT_APP_URL + 'trans',{
             method: 'POST',
             body: JSON.stringify(tran),
             headers: {

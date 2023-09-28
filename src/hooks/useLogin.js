@@ -11,7 +11,7 @@ const useLogin = () => {
         setLoading(true)
         setError(null)
 
-        const response = await fetch('https://budgetbackend-dhjq.onrender.com/user/login', {
+        const response = await fetch(process.env.REACT_APP_URL +'user/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
